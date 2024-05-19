@@ -60,7 +60,10 @@ class PegawaiController extends Controller
 
         $dataPegawai = Pegawai::findOrFail($id_pegawai);
         $dataPegawai->update([
-             'nama_pegawai'  => $request->nama_pegawai
+             'nama_pegawai'  => $request->nama_pegawai,
+             'alamat'        => $request->alamat,
+            'no_hp'        => $request->no_hp,
+            'jabatan'        => $request->jabatan,
             ]);
 
         return redirect()->route('pegawai.index')->with(['success' => 'Data Berhasil Diubah!']);

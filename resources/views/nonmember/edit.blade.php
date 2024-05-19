@@ -18,12 +18,12 @@
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('pegawai.update', $dataPegawai->id_pegawai) }}" method="POST">
+                        <form action="{{ route('nonmember.update', $nonmember->no_transaksi) }}" method="POST">
                           @csrf
                           @method('PUT')
                           <div class="form-group">
                             <label for="exampleInputEmail1">Nama Pegawai</label>
-                            <input type="text" name="nama_pegawai" class="form-control" placeholder="Enter nama pegawai" value="{{ old('nama_pegawai', $dataPegawai->nama_pegawai) }}"> 
+                            <input type="date" name="tgl_transaksi" class="form-control" placeholder="Enter tgl transaksi" value="{{ old('tgl_transaksi', $nonmember->tgl_transaksi) }}"> 
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             @error('nama_pegawai')
                             <div class="alert alert-danger mt-2">
@@ -32,8 +32,28 @@
                             @enderror
                           </div>
                           <div class="form-group">
+                            <label for="exampleInputEmail1">Nama Customer</label>
+                            <input type="text" name="nama_customer" class="form-control" placeholder="Enter nama customer"value="{{ old('nama_customer', $nonmember->nama_customer) }}">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            @error('nama_customer')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Nomor HP</label>
+                            <input type="text" name="no_hp" class="form-control" placeholder="Enter nomor hp"value="{{ old('no_hp', $nonmember->no_hp) }}">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            @error('no_hp')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                          </div>
+                          <div class="form-group">
                             <label for="exampleInputEmail1">Alamat</label>
-                            <input type="text" name="alamat" class="form-control" placeholder="Enter alamat"value="{{ old('alamat', $dataPegawai->alamat) }}">
+                            <input type="text" name="alamat" class="form-control" placeholder="Enter nomor hp"value="{{ old('alamat', $nonmember->alamat) }}">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             @error('alamat')
                             <div class="alert alert-danger mt-2">
@@ -42,20 +62,10 @@
                             @enderror
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Nomor HP</label>
-                            <input type="text" name="no_hp" class="form-control" placeholder="Enter nomor hp"value="{{ old('no_hp', $dataPegawai->no_hp) }}">
+                            <label for="exampleInputEmail1">Keterangan</label>
+                            <input type="text" name="keterangan" class="form-control" placeholder="Enter keterangan"value="{{ old('keterangan', $nonmember->keterangan) }}">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            @error('n0_hp')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputEmail1">Jabatan</label>
-                            <input type="text" name="jabatan" class="form-control" placeholder="Enter jabatan"value="{{ old('jabatan', $dataPegawai->jabatan) }}">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            @error('jabatan')
+                            @error('keterangan')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
                             </div>

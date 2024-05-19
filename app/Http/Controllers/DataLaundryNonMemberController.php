@@ -11,8 +11,8 @@ class DataLaundryNonMemberController extends Controller
 {
     public function index(): View
     {
-       $dataNonMember = NonMember::latest()->paginate(10);
-       return view('nonmember.index',compact('dataNonMember'));
+        $dataNonMember = NonMember::latest()->paginate(10);
+        return view('nonmember.index', compact('dataNonMember'));
     }
 
     public function create(): View
@@ -22,7 +22,7 @@ class DataLaundryNonMemberController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-       
+
         //validate form
         $request->validate([
             'nama_customer'      => 'required'
@@ -35,7 +35,7 @@ class DataLaundryNonMemberController extends Controller
             'alamat'        => $request->alamat,
             'no_hp'        => $request->no_hp,
             'keterangan'        => $request->keterangan,
-            
+
         ]);
         //redirect to index
         return redirect()->route('nonmember.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -43,28 +43,37 @@ class DataLaundryNonMemberController extends Controller
 
     public function edit(string $no_transaksi): View
     {
-        $dataMatakuliah = NonMember::findOrFail($no_transaksi);
-        return view('nonmember.edit', compact('dataMatakuliah'));
+        $nonmember = NonMember::findOrFail($no_transaksi);
+        return view('nonmember.edit', compact('nonmember'));
     }
 
     public function show(string $no_transaksi): View
     {
-        $matakuliah = NonMember::findOrFail($no_transaksi);
+        $nonmember = NonMember::findOrFail($no_transaksi);
 
-        return view('nonmember.show', compact('matakuliah'));
+        return view('nonmember.show', compact('nonmember'));
     }
 
     public function update(Request $request, $no_transaksi): RedirectResponse
     {
+
         //validate form
         $request->validate([
-            'nama_matakuliah'      => 'required|min:2'
+            'tgl_transaksi'      => 'required',
+            'nama_customer'      => 'required',
+            'alamat'      => 'required',
+            'no_hp'      => 'required',
+            'keterangan'      => 'required',
         ]);
 
-        $dataMatakuliah = NonMember::findOrFail($no_transaksi);
-        $dataMatakuliah->update([
-             'nama_matakuliah'  => $request->nama_matakuliah
-            ]);
+        $nonmember = NonMember::findOrFail($no_transaksi);
+        $nonmember->update([
+            'tgl_transaksi'        => $request->tgl_transaksi,
+            'nama_customer'        => $request->nama_customer,
+            'alamat'        => $request->alamat,
+            'no_hp'        => $request->no_hp,
+            'keterangan'        => $request->keterangan,
+        ]);
 
         return redirect()->route('nonmember.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
