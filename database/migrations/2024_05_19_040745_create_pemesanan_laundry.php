@@ -42,7 +42,6 @@ return new class extends Migration
             $table->id('no_transaksi');
             $table->date('tgl_transaksi');
             $table->unsignedBigInteger('member_id');
-            $table->unsignedBigInteger('id_pegawai');
             $table->text('keterangan');
             $table->enum('status_laundry', ['menunggu','diproses','selesai']);
             $table->enum('status_pembayaran', ['bayar','belum',]);
@@ -60,7 +59,7 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::create('barang', function (Blueprint $table) {
-            $table->string('kode_barang')->primary();
+            $table->id('kode_barang');
             $table->string('nama_barang', 150);
            $table->integer('harga');
             $table->timestamps();
