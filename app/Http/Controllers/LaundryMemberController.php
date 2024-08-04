@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LaundryMember;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class LaundryMemberController extends Controller
@@ -21,7 +22,8 @@ class LaundryMemberController extends Controller
      */
     public function create()
     {
-        return view('laundrymember.create');
+        $dataMember = Member::all();
+        return view('laundrymember.create', compact('dataMember'));
     }
 
     /**
@@ -34,7 +36,6 @@ class LaundryMemberController extends Controller
         // ]);
 
         LaundryMember::create([
-            'no_transaksi'        => $request->no_transaksi,
             'tgl_transaksi'        => $request->tgl_transaksi,
             'member_id'        => $request->member_id,
             'keterangan'        => $request->keterangan,
@@ -74,7 +75,6 @@ class LaundryMemberController extends Controller
 
         $laundryMember =  LaundryMember::findOrFail($id);
         $laundryMember->update([
-            'no_transaksi'        => $request->no_transaksi,
             'tgl_transaksi'        => $request->tgl_transaksi,
             'member_id'        => $request->member_id,
             'keterangan'        => $request->keterangan,
