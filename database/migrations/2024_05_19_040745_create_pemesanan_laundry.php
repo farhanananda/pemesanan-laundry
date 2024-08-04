@@ -21,7 +21,7 @@ return new class extends Migration
         });
         Schema::create('pembelian_barang', function (Blueprint $table) {
             $table->id('id_pembelian');
-            $table->string('kode_barang', 10)->unique();
+            $table->string('kode_barang', 10);
             $table->string('nama_barang', 150);
             $table->integer('harga');
             $table->timestamps();
@@ -33,6 +33,36 @@ return new class extends Migration
             $table->string('alamat', 255);
             $table->string('no_hp', 15);
             $table->string('keterangan', 255);
+            $table->enum('status_laundry', ['menunggu','diproses','selesai']);
+            $table->enum('status_pembayaran', ['bayar','belum',]);
+            $table->text('lokasi_kirim');
+            $table->timestamps();
+        });
+        Schema::create('data_laundry_member', function (Blueprint $table) {
+            $table->id('no_transaksi');
+            $table->date('tgl_transaksi');
+            $table->unsignedBigInteger('member_id');
+            $table->unsignedBigInteger('id_pegawai');
+            $table->text('keterangan');
+            $table->enum('status_laundry', ['menunggu','diproses','selesai']);
+            $table->enum('status_pembayaran', ['bayar','belum',]);
+            $table->text('lokasi_kirim');
+            $table->timestamps();
+        });
+        Schema::create('member', function (Blueprint $table) {
+            $table->id();
+            $table->string('no_identitas');
+            $table->string('nama_member', 150);
+            $table->string('alamat', 255);
+            $table->string('no_hp', 15);
+            $table->string('keterangan', 255);
+            $table->date('tgl_join');
+            $table->timestamps();
+        });
+        Schema::create('barang', function (Blueprint $table) {
+            $table->string('kode_barang')->primary();
+            $table->string('nama_barang', 150);
+           $table->integer('harga');
             $table->timestamps();
         });
     }
