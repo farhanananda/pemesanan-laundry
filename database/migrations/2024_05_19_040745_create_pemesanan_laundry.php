@@ -38,7 +38,7 @@ return new class extends Migration
             $table->text('lokasi_kirim');
             $table->timestamps();
         });
-        Schema::create('data_laundry_member', function (Blueprint $table) {
+        Schema::create('data_laundry_members', function (Blueprint $table) {
             $table->id('no_transaksi');
             $table->date('tgl_transaksi');
             $table->unsignedBigInteger('member_id');
@@ -49,7 +49,7 @@ return new class extends Migration
             $table->text('lokasi_kirim');
             $table->timestamps();
         });
-        Schema::create('member', function (Blueprint $table) {
+        Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('no_identitas');
             $table->string('nama_member', 150);
